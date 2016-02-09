@@ -1,0 +1,31 @@
+package com.Application.Activity;
+
+import com.Application.children.R;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+
+public abstract class MainLayout extends FragmentActivity {
+
+	@Override
+	protected void onCreate(Bundle arg0) {
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);
+		setContentView(R.layout.activity_layout);
+		FragmentManager fm=getSupportFragmentManager();
+		Fragment fragment=fm.findFragmentById(R.id.fragment);
+		if(fragment==null)
+		{
+			fragment=createfragment1();
+			fm.beginTransaction()
+			.add(R.id.fragment, fragment)
+			.commit();
+		}
+	}
+	protected abstract Fragment createfragment1();
+	protected abstract Fragment createfragment2();
+	protected abstract Fragment createfragment3();
+	
+}
